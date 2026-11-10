@@ -1,4 +1,3 @@
-
 import os
 import sqlite3
 from functools import wraps
@@ -30,7 +29,8 @@ app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 
 serializer = URLSafeTimedSerializer(app.secret_key)
 
-DATABASE = "database.db"
+# ⚠️ VERCEL FIX: Use /tmp directory if running on Vercel's serverless environment
+DATABASE = "/tmp/database.db" if os.environ.get("VERCEL") else "database.db"
 
 
 # ==========================================
